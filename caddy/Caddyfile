@@ -1,17 +1,17 @@
-cms.buddhiko.com {
+# cloud.nirodhiko.link {
+#   reverse_proxy http://host.docker.internal:30000
+# }
+
+cms.nirodhiko.link {
   reverse_proxy http://host.docker.internal:9000
 }
 
-cloud.buddhiko.com {
-  reverse_proxy http://host.docker.internal:30000
-}
-
-docker.buddhiko.com {
+docker.nirodhiko.link {
   reverse_proxy http://host.docker.internal:10000
 }
 
-www.buddhiko.com {
-  encode gzip
+www.nirodhiko.link {
+  encode gzip zstd
   handle {
     root * /srv/web
     try_files {path} /index.html
@@ -19,17 +19,17 @@ www.buddhiko.com {
   }
 }
 
-file.buddhiko.com {
+file.nirodhiko.link {
   encode gzip zstd
   root * /srv/uploads
   file_server browse
 }
 
-git.buddhiko.com {
+git.nirodhiko.link {
   reverse_proxy https://github.com {
     header_up Host {upstream_hostport}
     header_up X-Forwarded-Host {host}
-    header_up origin https://github.com
-    header_down location (https://github.com/)(.*) https://git.buddhiko.com/$2
+    header_up Origin https://github.com
+    header_down location (https://github.com/)(.*) https://git.nirodhiko.link/$2
   }
 }
