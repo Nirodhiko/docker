@@ -1,20 +1,18 @@
-version: "3.9"
-
 services:
-  pgadmin:
-    image: dpage/pgadmin4:8.0
-    container_name: pgadmin
-    ports:
-      - "20000:80"
-    volumes:
-      - ~/Nextcloud/work/database:/var/lib/pgadmin/storage
-    environment:
-      PGADMIN_DEFAULT_EMAIL: buddhiko@outlook.com 
-      PGADMIN_DEFAULT_PASSWORD_FILE: /run/secrets/passwd
-    secrets:
-      - passwd
-    restart: unless-stopped
+    pgadmin:
+        image: dpage/pgadmin4:9
+        container_name: pgadmin
+        ports:
+            - "20000:80"
+        volumes:
+            - ./_data:/var/lib/pgadmin
+        environment:
+            PGADMIN_DEFAULT_EMAIL: nirodhiko@outlook.com
+            PGADMIN_DEFAULT_PASSWORD_FILE: /run/secrets/passwd
+        secrets:
+            - passwd
+        restart: unless-stopped
 
 secrets:
-  passwd:
-    file: ../_secrets/passwd.txt
+    passwd:
+        file: ../_secrets/passwd

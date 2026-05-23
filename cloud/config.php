@@ -4,15 +4,15 @@ $CONFIG = array (
   "force_locale" => "zh_CN",
   'htaccess.RewriteBase' => '/',
   'memcache.local' => '\\OC\\Memcache\\APCu',
-  'apps_paths' => 
+  'apps_paths' =>
   array (
-    0 => 
+    0 =>
     array (
       'path' => '/var/www/html/apps',
       'url' => '/apps',
       'writable' => false,
     ),
-    1 => 
+    1 =>
     array (
       'path' => '/var/www/html/custom_apps',
       'url' => '/custom_apps',
@@ -21,7 +21,7 @@ $CONFIG = array (
   ),
   'memcache.distributed' => '\\OC\\Memcache\\Redis',
   'memcache.locking' => '\\OC\\Memcache\\Redis',
-  'redis' => 
+  'redis' =>
   array (
     'host' => 'redis',
     'password' => '',
@@ -33,7 +33,7 @@ $CONFIG = array (
   'instanceid' => 'ocgmiy4m64fm',
   'passwordsalt' => 'AtZ7LghmC8mEWccSQeh9WbyID4w0Lt',
   'secret' => 'bggGUfYLoyzRgguMmCS/2c7ldIYbHA2nQNKDjXD5OzNZX/Tm',
-  'trusted_domains' => 
+  'trusted_domains' =>
   array (
     0 => 'cloud.fuyouindustries.com',
   ),

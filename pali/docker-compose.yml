@@ -1,32 +1,33 @@
-version: "3.9"
-
 services:
-  # cache:
-  #   image: redis
-  #   container_name: cache
-  #   ports:
-  #     - 6379:6379
+    # cache:
+    #   image: redis:7-alpine
+    #   container_name: cache
+    #   ports:
+    #     - 6379:6379
 
-  directus:
-    image: directus/directus:10.9
-    container_name: directus
-    ports:
-      - 9000:9000
-    volumes:
-      - ./config.json:/directus/config.json
-      - ../_files/uploads:/directus/uploads
-      - ./_data:/directus/database
-    # depends_on:
-    #   - cache
-    environment:
-      CONFIG_PATH: /directus/config.json
-    secrets:
-      - email
-      - passwd
-    restart: unless-stopped
+    directus:
+        image: directus/directus:11
+        container_name: directus
+        ports:
+            - 9000:9000
+        volumes:
+            - ./config.json:/directus/config.json
+            - ../_files/uploads:/directus/uploads
+            - ./_data:/directus/database
+            - ./extensions:/directus/extensions
+        # depends_on:
+        #   - cache
+        environment:
+            CONFIG_PATH: /directus/config.json
+        secrets:
+            - passwd
+            - email
+        extra_hosts:
+            - "host.docker.internal:host-gateway"
+        restart: unless-stopped
 
 secrets:
-  passwd:
-    file: ../_secrets/passwd.txt
-  email:
-    file: ../_secrets/email.txt
+    email:
+        file: ../_secrets/email
+    passwd:
+        file: ../_secrets/passwd

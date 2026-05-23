@@ -1,28 +1,28 @@
-  nextcloud:
-    image: nextcloud:30.0.2-apache
-    container_name: nextcloud
-    volumes:
-      - ./_data:/var/www/html
-    ports:
-      - 30000:80
-    links:
-      - redis
-    depends_on:
-      - redis
-    environment:
-      SQLITE_DATABASE: cloud
-      OVERWRITECLIURL: https://cloud.fuyouindustries.com
-      OVERWRITEPROTOCOL: https
-      NEXTCLOUD_TRUSTED_DOMAINS: cloud.fuyouindustries.com
-      PHP_UPLOAD_LIMIT: 2G
-      SKIP_DOMAIN_VALIDATION: true
-      REDIS_HOST: redis
-      REDIS_PORT: 6379
-    restart: unless-stopped
+services:
+    nextcloud:
+        image: nextcloud:30.0.2-apache
+        container_name: nextcloud
+        volumes:
+            - ./_data:/var/www/html
+        ports:
+            - 30000:80
+        links:
+            - redis
+        depends_on:
+            - redis
+        environment:
+            SQLITE_DATABASE: cloud
+            OVERWRITECLIURL: https://cloud.fuyouindustries.com
+            OVERWRITEPROTOCOL: https
+            NEXTCLOUD_TRUSTED_DOMAINS: cloud.fuyouindustries.com
+            PHP_UPLOAD_LIMIT: 2G
+            SKIP_DOMAIN_VALIDATION: true
+            REDIS_HOST: redis
+            REDIS_PORT: 6379
+        restart: unless-stopped
 
-
-  redis:
-    image: redis:7.4.1
-    container_name: nextcloud-redis
-    restart: unless-stopped
-    command: redis-server
+    redis:
+        image: redis:7-alpine
+        container_name: nextcloud-redis
+        restart: unless-stopped
+        command: redis-server
