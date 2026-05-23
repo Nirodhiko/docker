@@ -1,21 +1,19 @@
-version: "3.9"
-
 services:
-  postgres:
-    image: postgres:16.0-alpine
-    container_name: postgres
-    ports:
-      - 5432:5432
-    environment:
-      POSTGRES_USER: admin
-      POSTGRES_DB: pali
-      POSTGRES_PASSWORD_FILE: /run/secrets/passwd
-    secrets:
-      - passwd
-    volumes:
-      - ./_data:/var/lib/postgresql/data
-    restart: unless-stopped
+    postgres:
+        image: postgres:17-alpine
+        container_name: postgres
+        ports:
+            - 5432:5432
+        environment:
+            POSTGRES_USER: admin
+            POSTGRES_DB: pali
+            POSTGRES_PASSWORD_FILE: /run/secrets/passwd
+        secrets:
+            - passwd
+        volumes:
+            - ./_data:/var/lib/postgresql/data
+        restart: unless-stopped
 
 secrets:
-  passwd:
-    file: ../_secrets/passwd.txt
+    passwd:
+        file: ../_secrets/passwd
